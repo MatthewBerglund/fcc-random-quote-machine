@@ -1,0 +1,8 @@
+Random Quote Machine requirements:
+
+[] It should be horizontally centered on the page.
+[] It should display a random quote when the page loads.
+[] It should display the name of the author of the quote when the page loads.
+[] When the "New Quote" button is clicked, it should fetch a new quote and display it.
+[] When the "New Quote" button is clicked, it should fetch the new quote's author and display it.
+[] It should provide a way for the user to tweet the current quote.
