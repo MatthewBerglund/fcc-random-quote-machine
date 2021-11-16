@@ -35,6 +35,7 @@ function displayNewQuote() {
   var randomQuote = getRandomQuote(quotes);
   document.querySelector('.quote-text').innerText = randomQuote['text'];
   document.querySelector('.quote-author').innerText = randomQuote['author'];
+  document.querySelector('.twitter-share-button').setAttribute('data-text', randomQuote['text'] + randomQuote['author']);
 }
 
 function getRandomIndex(array) {
