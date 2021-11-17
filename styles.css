@@ -17,11 +17,13 @@ body {
   min-height: 113px;
   height: auto;
   border: 2px solid rgb(0, 0, 0);
+  padding: 20px;
+  text-align: center;
 }
 
 .quote {
   line-height: 1.5;
-  margin: 30px auto;
+  margin: 30px auto 50px;
   width: 75%;
   min-height: 9px;
   /* border: 1px solid red; */
@@ -29,7 +31,6 @@ body {
 
 .quote-author {
   margin-top: 10px;
-  text-align: right;
 }
 
 .new-quote-button {
@@ -49,5 +50,5 @@ body {
   right: 0;
   left: 0;
   bottom: 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
