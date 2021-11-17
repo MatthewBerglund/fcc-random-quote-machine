@@ -1,27 +1,14 @@
 const quotes = [
-  {text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia provident dolorum ex vero pariatur suscipit culpa impedit voluptates quos, expedita, placeat tempora optio atque itaque dolore obcaecati, voluptatibus ab cum.', author: 'Author 1'},
-  {text: 'Quote 2', author: 'Author 2'},
-  {text: 'Quote 3', author: 'Author 3'},
-  {text: 'Quote 4', author: 'Author 4'},
-  {text: 'Quote 5', author: 'Author 5'},
-  {text: 'Quote 6', author: 'Author 6'},
-  {text: 'Quote 7', author: 'Author 7'},
-  {text: 'Quote 8', author: 'Author 8'},
-  {text: 'Quote 9', author: 'Author 9'},
-  {text: 'Quote 10', author: 'Author 10'},
-  {text: 'Quote 11', author: 'Author 11'},
-  {text: 'Quote 12', author: 'Author 12'},
-  {text: 'Quote 13', author: 'Author 13'},
-  {text: 'Quote 14', author: 'Author 14'},
-  {text: 'Quote 15', author: 'Author 15'},
-  {text: 'Quote 16', author: 'Author 16'},
-  {text: 'Quote 17', author: 'Author 17'},
-  {text: 'Quote 18', author: 'Author 18'},
-  {text: 'Quote 19', author: 'Author 19'},
-  {text: 'Quote 20', author: 'Author 20'},
-  {text: 'Quote 21', author: 'Author 21'},
-  {text: 'Quote 22', author: 'Author 22'},
-  {text: 'Quote 23', author: 'Author 23'}
+  {text: 'Leave the gun. Take the cannoli.', character: 'Peter Clemenza'},
+  {text: 'I\'m gonna make him an offer he can\'t refuse, okay?', character: 'Don Corleone'},
+  {text: 'Some day, and that day may never come, I will call upon you to do a service for me. But until that day, consider this justice a gift on my daughter\'s wedding day.', character: 'Don Corleone'},
+  {text: 'Fredo, you\'re my older brother, and I love you. But don\'t ever take sides with anyone against the Family again. Ever.', character: 'Michael Corleone'},
+  {text: 'It\'s a Sicilian message. It means Luca Brasi sleeps with the fishes.', character: 'Peter Clemenza'},
+  {text: 'Friendship is everything. Friendship is more than talent. It is more than the government. It is almost the equal of family.', character: 'Don Corleone'},
+  {text: 'A friend should always underestimate your virtues and an enemy overestimate your faults.', character: 'Don Corleone'},
+  {text: 'Time erodes gratitude more quickly than it does beauty.', character: 'Mario Puzo'},
+  {text: 'Mothers are like cops. They always believe the worst.', character: 'Mario Puzo'},
+  {text: 'I want all of you to enjoy your cake, so...enjoy.', character: 'Hyman Rother'}
 ];
 
 bindEvents();
@@ -32,10 +19,11 @@ function bindEvents() {
 }
 
 function displayNewQuote() {
-  var randomQuote = getRandomQuote(quotes);
-  document.querySelector('.quote-text').innerText = randomQuote['text'];
-  document.querySelector('.quote-author').innerText = randomQuote['author'];
-  document.querySelector('.twitter-share-button').setAttribute('data-text', randomQuote['text'] + randomQuote['author']);
+  var quote = getRandomQuote(quotes);
+  var twitterAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['character']; 
+  document.querySelector('.quote-text').innerText = quote['text'];
+  document.querySelector('.quote-author').innerText = '— ' + quote['character'];
+  document.querySelector('.tweet-quote').setAttribute('href', twitterAddress);
 }
 
 function getRandomIndex(array) {
@@ -45,6 +33,6 @@ function getRandomIndex(array) {
 }
 
 function getRandomQuote(quotesArray) {
-  var randomIndex = getRandomIndex(quotesArray);
-  return quotesArray[randomIndex];
+  var index = getRandomIndex(quotesArray);
+  return quotesArray[index];
 }
