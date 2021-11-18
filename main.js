@@ -20,10 +20,14 @@ function bindEvents() {
 
 function displayNewQuote() {
   var quote = getRandomQuote(quotes);
-  var twitterAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['character']; 
   document.querySelector('.quote-text').innerText = '\"' + quote['text'] + '\"';
   document.querySelector('.quote-author').innerText = '— ' + quote['character'];
-  document.querySelector('.tweet-quote').setAttribute('href', twitterAddress);
+  updateTwitterIntent(quote);
+}
+
+function updateTwitterIntent(quote) {
+  var intentAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['character'];
+  document.querySelector('.tweet-quote').setAttribute('href', intentAddress);
 }
 
 function getRandomIndex(array) {
