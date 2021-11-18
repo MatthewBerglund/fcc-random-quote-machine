@@ -7,13 +7,18 @@ body {
   background: rgb(255, 255, 255);
 }
 
+.main {
+  position: relative;
+  height: calc(100vh - 50px);
+}
+
 .quote-container {
   color: rgb(0, 0, 0);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  width: 500px;
+  width: 535px;
   min-height: 113px;
   height: auto;
   border: 2px solid rgb(0, 0, 0);
@@ -22,6 +27,7 @@ body {
 }
 
 .quote {
+  font-family: 'Special Elite', cursive;
   line-height: 1.5;
   margin: 30px auto 50px;
   width: 75%;
@@ -34,7 +40,8 @@ body {
 }
 
 .new-quote-button {
-  width: 100px;
+  font-size: 16px;
+  width: 179px;
   height: 50px;
 }
 
@@ -51,4 +58,12 @@ body {
   left: 0;
   bottom: 0;
   /* border: 1px solid red; */
+}
+
+.attribute {
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

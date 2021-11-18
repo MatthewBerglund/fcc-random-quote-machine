@@ -8,7 +8,7 @@ const quotes = [
   {text: 'A friend should always underestimate your virtues and an enemy overestimate your faults.', character: 'Don Corleone'},
   {text: 'Time erodes gratitude more quickly than it does beauty.', character: 'Mario Puzo'},
   {text: 'Mothers are like cops. They always believe the worst.', character: 'Mario Puzo'},
-  {text: 'I want all of you to enjoy your cake, so...enjoy.', character: 'Hyman Rother'}
+  {text: 'I want all of you to enjoy your cake, so...enjoy.', character: 'Hyman Roth'}
 ];
 
 bindEvents();
@@ -20,7 +20,7 @@ function bindEvents() {
 
 function displayNewQuote() {
   var quote = getRandomQuote(quotes);
-  document.querySelector('.quote-text').innerText = '\"' + quote['text'] + '\"';
+  document.querySelector('.quote-text').innerText = '\“' + quote['text'] + '\”';
   document.querySelector('.quote-author').innerText = '— ' + quote['character'];
   updateTwitterIntent(quote);
 }
