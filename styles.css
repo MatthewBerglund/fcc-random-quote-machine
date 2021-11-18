@@ -1,5 +1,5 @@
 html {
-  font-family: sans-serif;
+  font-family: 'Sen', sans-serif;
   font-size: 22px;
 }
 
@@ -13,7 +13,6 @@ body {
 }
 
 .quote-container {
-  color: rgb(0, 0, 0);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -24,6 +23,9 @@ body {
   border: 2px solid rgb(0, 0, 0);
   padding: 20px;
   text-align: center;
+  box-shadow: 11px 11px 6px 0px rgb(0 0 0 / 50%);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 250, 238);
 }
 
 .quote {
@@ -32,7 +34,6 @@ body {
   margin: 30px auto 50px;
   width: 75%;
   min-height: 9px;
-  /* border: 1px solid red; */
 }
 
 .quote-author {
@@ -40,38 +41,39 @@ body {
 }
 
 .new-quote-button {
-  font-size: 16px;
+  font-size: 17px;
   width: 179px;
   height: 50px;
+  background-color:rgb(255, 196, 59);
+  border: 1px solid rgb(224, 157, 0);
+  border-radius: 2px;
 }
 
 .new-quote-button:hover {
   cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  transition: all 0.2s ease-out;
 }
 
 .bottom-bar {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
-  align-items: center;
   position: relative;
   right: 0;
   left: 0;
   bottom: 0;
-  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .tweet-quote {
   display: flex;
   align-items: center;
-  width: 2em;
-  /* border: 1px solid green; */
+  width: 1.8em;
 }
 
 .tweet-quote img {
   width: 100%;
-  padding-top: 1px;
-  padding-bottom: 1px;
 }
 
 .attribute {

@@ -1,14 +1,22 @@
 const quotes = [
-  {text: 'Leave the gun. Take the cannoli.', character: 'Peter Clemenza'},
-  {text: 'I\'m gonna make him an offer he can\'t refuse, okay?', character: 'Don Corleone'},
-  {text: 'Some day, and that day may never come, I will call upon you to do a service for me. But until that day, consider this justice a gift on my daughter\'s wedding day.', character: 'Don Corleone'},
-  {text: 'Fredo, you\'re my older brother, and I love you. But don\'t ever take sides with anyone against the Family again. Ever.', character: 'Michael Corleone'},
-  {text: 'It\'s a Sicilian message. It means Luca Brasi sleeps with the fishes.', character: 'Peter Clemenza'},
-  {text: 'Friendship is everything. Friendship is more than talent. It is more than the government. It is almost the equal of family.', character: 'Don Corleone'},
-  {text: 'A friend should always underestimate your virtues and an enemy overestimate your faults.', character: 'Don Corleone'},
-  {text: 'Time erodes gratitude more quickly than it does beauty.', character: 'Mario Puzo'},
-  {text: 'Mothers are like cops. They always believe the worst.', character: 'Mario Puzo'},
-  {text: 'I want all of you to enjoy your cake, so...enjoy.', character: 'Hyman Roth'}
+  {text: 'Leave the gun. Take the cannoli.', movie: 'The Godfather'},
+  {text: 'I\’m gonna make him an offer he can\’t refuse.', movie: 'The Godfather'},
+  {text: 'I want all of you to enjoy your cake, so...enjoy.', movie: 'The Godfather'},
+  {text: 'Frankly my dear, I don\’t give a damn.', movie: 'Gone with the Wind'},
+  {text: 'You don\’t understand! I coulda had class. I coulda been a contender. I could\’ve been somebody, instead of a bum, which is what I am.', movie: 'On the Waterfront'},
+  {text: 'Toto, I\’ve got a feeling we\’re not in Kansas anymore.', movie: 'The Wizard of Oz'},
+  {text: 'Here\’s looking at you, kid.', movie: 'Casablanca'},
+  {text: 'As God is my witness, I\’ll never be hungry again.', movie: 'Gone with the Wind'},
+  {text: 'Say \‘hello\’ to my little friend!', movie: 'Scarface'},
+  {text: 'I feel the need — the need for speed!', movie: 'Top Gun'},
+  {text: 'Houston, we have a problem.', movie: 'Apollo 13'},
+  {text: 'Nobody puts Baby in a corner.', movie: 'Dirty Dancing'},
+  {text: 'I\’ll get you, my pretty, and your little dog, too!', movie: 'The Wizard of Oz'},
+  {text: 'One morning I shot an elephant in my pajamas. How he got in my pajamas, I don\’t know.', movie: 'Animal Crackers'},
+  {text: 'You\’ve got to ask yourself one question: \‘Do I feel lucky?\’ Well, do ya, punk?', movie: 'Dirty Harry'},
+  {text: 'Hold on to your butts.', movie: 'Jurassic Park'},
+  {text: 'As far back as I can remember, I always wanted to be a gangster.', movie: 'Goodfellas'},
+  {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
 
 bindEvents();
@@ -21,12 +29,12 @@ function bindEvents() {
 function displayNewQuote() {
   var quote = getRandomQuote(quotes);
   document.querySelector('.quote-text').innerText = '\“' + quote['text'] + '\”';
-  document.querySelector('.quote-author').innerText = '— ' + quote['character'];
+  document.querySelector('.quote-author').innerText = '— ' + quote['movie'];
   updateTwitterIntent(quote);
 }
 
 function updateTwitterIntent(quote) {
-  var intentAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['character'];
+  var intentAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['movie'];
   document.querySelector('.tweet-quote').setAttribute('href', intentAddress);
 }
 
