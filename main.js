@@ -28,13 +28,16 @@ function bindEvents() {
 
 function displayNewQuote() {
   var quote = getRandomQuote(quotes);
-  document.querySelector('.quote-text').innerText = '\“' + quote['text'] + '\”';
-  document.querySelector('.quote-author').innerText = '— ' + quote['movie'];
+  var quoteTextEl = document.querySelector('.quote-text');
+  var quoteMovieEl = document.querySelector('.quote-movie');
+  quoteTextEl.innerText = '\“' + quote['text'] + '\”';
+  quoteMovieEl.innerText = '— ' + quote['movie'];
   updateTwitterIntent(quote);
 }
 
 function updateTwitterIntent(quote) {
-  var intentAddress = 'https://twitter.com/intent/tweet?text=' + quote['text'] + '  — ' + quote['movie'];
+  var intentAddress = 'https://twitter.com/intent/tweet?text=';
+  intentAddress += '\"' + quote['text'] + '\"' + '  — ' + quote['movie'];
   document.querySelector('.tweet-quote').setAttribute('href', intentAddress);
 }
 
