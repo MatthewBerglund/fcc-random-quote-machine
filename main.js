@@ -1,4 +1,4 @@
-const quotes = [
+var quotes = [
   {text: 'Leave the gun. Take the cannoli.', movie: 'The Godfather'},
   {text: 'I\’m gonna make him an offer he can\’t refuse.', movie: 'The Godfather'},
   {text: 'I want all of you to enjoy your cake, so...enjoy.', movie: 'The Godfather'},
@@ -19,33 +19,24 @@ const quotes = [
   {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
 
-bindEvents();
+var newQuoteButton = document.getElementById('new-quote-button');
+newQuoteButton.addEventListener('click', displayNewQuote);
+
 displayNewQuote();
 
-function bindEvents() {
-  document.getElementById('new-quote-button').addEventListener('click', displayNewQuote);
-}
-
 function displayNewQuote() {
-  var quote = getRandomQuote(quotes);
   var displayArea = document.getElementById('display-area');
   var quotePara = document.getElementById('quote');
   var refPara = document.getElementById('ref');
+  var quote = getRandomQuote(quotes);
 
   var fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
-
   fadeOut.onfinish = function() {
     quotePara.innerText = '\“' + quote['text'] + '\”';
     refPara.innerText = '— ' + quote['movie'];
-    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750);
+    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750)
   }
 
-  // displayArea.animate([{ opacity: 1 },{ opacity: 0 }], { duration: 3000 });
-  // displayArea.style.opacity = 0;
-  // quotePara.innerText = '\“' + quote['text'] + '\”';
-  // refPara.innerText = '— ' + quote['movie'];
-  // displayArea.animate([{ opacity: 0 },{ opacity: 1 }], { duration: 1000 });
-  // displayArea.style.opacity = 1;
   updateTwitterIntent(quote);
 }
 
