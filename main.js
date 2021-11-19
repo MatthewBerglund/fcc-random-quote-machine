@@ -23,22 +23,30 @@ bindEvents();
 displayNewQuote();
 
 function bindEvents() {
-  document.querySelector('.new-quote-button').addEventListener('click', displayNewQuote);
+  document.getElementById('new-quote-button').addEventListener('click', displayNewQuote);
 }
 
 function displayNewQuote() {
   var quote = getRandomQuote(quotes);
-  var quoteTextEl = document.querySelector('.quote-text');
-  var quoteMovieEl = document.querySelector('.quote-movie');
-  quoteTextEl.innerText = '\“' + quote['text'] + '\”';
-  quoteMovieEl.innerText = '— ' + quote['movie'];
-  updateTwitterIntent(quote);
-}
+  var displayArea = document.getElementById('display-area');
+  var quotePara = document.getElementById('quote');
+  var refPara = document.getElementById('ref');
 
-function updateTwitterIntent(quote) {
-  var intentAddress = 'https://twitter.com/intent/tweet?text=';
-  intentAddress += '\"' + quote['text'] + '\"' + '  — ' + quote['movie'];
-  document.querySelector('.tweet-quote').setAttribute('href', intentAddress);
+  var fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
+
+  fadeOut.onfinish = function() {
+    quotePara.innerText = '\“' + quote['text'] + '\”';
+    refPara.innerText = '— ' + quote['movie'];
+    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750);
+  }
+
+  // displayArea.animate([{ opacity: 1 },{ opacity: 0 }], { duration: 3000 });
+  // displayArea.style.opacity = 0;
+  // quotePara.innerText = '\“' + quote['text'] + '\”';
+  // refPara.innerText = '— ' + quote['movie'];
+  // displayArea.animate([{ opacity: 0 },{ opacity: 1 }], { duration: 1000 });
+  // displayArea.style.opacity = 1;
+  updateTwitterIntent(quote);
 }
 
 function getRandomIndex(array) {
@@ -47,7 +55,13 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function getRandomQuote(quotesArray) {
-  var index = getRandomIndex(quotesArray);
-  return quotesArray[index];
+function getRandomQuote(quotes) {
+  var index = getRandomIndex(quotes);
+  return quotes[index];
+}
+
+function updateTwitterIntent(quote) {
+  var intentAddress = 'https://twitter.com/intent/tweet?text=';
+  intentAddress += '\"' + quote['text'] + '\"' + '  — ' + quote['movie'];
+  document.getElementById('tweet-quote-link').setAttribute('href', intentAddress);
 }

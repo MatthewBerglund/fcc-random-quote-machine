@@ -1,98 +1,82 @@
 html {
-  font-family: 'Sen', sans-serif;
+  font-family: "Sen", sans-serif;
   font-size: 22px;
 }
 
-body {
-  background: rgb(255, 255, 255);
-}
-
 .main {
-  position: relative;
-  height: calc(100vh - 50px);
+  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: calc(100vh - 16px);
+  justify-content: center;
 }
 
-.fade-in {
-  animation-duration: 1s;
-  animation-name: fade-in;
-}
-
-@keyframes fade-in {
-  from {
-    color: rgba(0, 0, 0, 0);
-  }
-
-  to {
-    color:rgb(0, 0, 0);
-  }
-}
-
-.quote-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 535px;
-  min-height: 113px;
-  border: 2px solid rgb(0, 0, 0);
+#quote-box {
+  background: #fffaee;
+  border: 2px solid #000000;
+  box-shadow: 11px 11px 6px 0px #00000080;
+  display: grid;
+  grid-row-end: 3;
+  grid-row-start: 2;
+  grid-template-rows: 2fr 1fr;
+  height: 300px;
   padding: 20px;
-  text-align: center;
-  box-shadow: 11px 11px 6px 0px rgb(0 0 0 / 50%);
-  background-color: rgb(255, 250, 238);
+  width: 535px;
 }
 
-.quote {
-  font-family: 'Special Elite', cursive;
+#display-area {
+  align-self: center;
+  font-family: "Special Elite", cursive;
+  justify-self: center;
   line-height: 1.5;
-  margin: 30px auto 50px;
-  width: 75%;
-  min-height: 9px;
+  padding: 0 15px;
+  text-align: center;
 }
 
-.quote-author {
-  margin-top: 10px;
+#quote {
+  margin: 0 0 30px 0;
 }
 
-.new-quote-button {
-  font-size: 17px;
-  width: 179px;
-  height: 50px;
-  background-color:rgb(255, 196, 59);
-  border: 1px solid rgb(224, 157, 0);
+#new-quote-button {
+  background:#ffc43b;
   border-radius: 2px;
+  border: 1px solid #e09d00;
+  font-size: 17px;
+  height: 50px;
+  width: 179px;
 }
 
-.new-quote-button:hover {
+#new-quote-button:hover {
+  border: 1px solid #000000;
   cursor: pointer;
-  border: 1px solid rgb(0, 0, 0);
-  transition: all 0.2s ease-out;
+  transition: all .2s ease-out;
+}
+
+#new-quote-button:active {
+  background: #ffb300;
 }
 
 .bottom-bar {
-  position: relative;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  align-items: center;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
-  align-items: center;
 }
 
-.tweet-quote {
+#tweet-quote-link {
+  align-items: center;
   display: flex;
-  align-items: center;
-  width: 1.8em;
+  width: 40px;
 }
 
-.tweet-quote img {
+#tweet-quote-link img {
   width: 100%;
 }
 
 .attribute {
   font-size: 12px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  grid-row-end: 4;
+  grid-row-start: 3;
   text-align: center;
+  width: 100%;
 }
