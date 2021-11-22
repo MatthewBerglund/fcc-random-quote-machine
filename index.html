@@ -11,19 +11,23 @@
   <title>Random Movie Quotes</title>
 </head>
 <body>
-  <div class="main">
+  <main>
     <div id="quote-box">
-      <div id="display-area">
-        <p id="quote"></p>
-        <p id="ref"></p>
-      </div>
+      <figure id="display-area">
+        <blockquote>
+            <p id="quote"></p>
+        </blockquote>
+        <figcaption>— <cite id="ref"></cite></figcaption>
+      </figure>
       <div class="bottom-bar">
         <a href="https://twitter.com/intent/tweet" id="tweet-quote-link" target="_blank"><img src="assets/images/twitter.png" alt="Tweet this quote"></a>
         <button id="new-quote-button">New random quote</button>
       </div>
     </div>
+  </main>
+  <footer>
     <div class="attribution">Icons made by <a href="https://www.flaticon.com/authors/riajulislam" title="riajulislam">riajulislam</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-  </div>
+  </footer>
   <script src="main.js"></script>
 </body>
 </html>

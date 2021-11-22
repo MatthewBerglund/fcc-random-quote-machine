@@ -33,7 +33,7 @@ function displayNewQuote() {
   var fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
   fadeOut.onfinish = function() {
     quotePara.innerText = '\“' + quote['text'] + '\”';
-    refPara.innerText = '— ' + quote['movie'];
+    refPara.innerText = quote['movie'];
     displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750)
   }
 
