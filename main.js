@@ -27,14 +27,15 @@ displayNewQuote();
 function displayNewQuote() {
   var displayArea = document.getElementById('display-area');
   var quotePara = document.getElementById('quote');
-  var refPara = document.getElementById('ref');
+  var refCite = document.getElementById('ref');
   var quote = getRandomQuote(quotes);
 
   var fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
   fadeOut.onfinish = function() {
     quotePara.innerText = '\“' + quote['text'] + '\”';
-    refPara.innerText = quote['movie'];
-    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750)
+    refCite.innerText = quote['movie'];
+    refCite.before('— ');
+    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750);
   }
 
   updateTwitterIntent(quote);
