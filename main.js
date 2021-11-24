@@ -35,15 +35,17 @@ function displayNewQuote() {
     fadeOut.onfinish = fadeInNewQuote(quote);
   }
 
-  displayArea.style.opacity = 1;
   updateTwitterIntent(quote);
 }
 
 function fadeInNewQuote(quote) {
   const refCite = document.getElementById('ref');
+  
   quotePara.innerText = '\“' + quote['text'] + '\”';
   refCite.innerText = quote['movie'];
+  
   displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750);
+  displayArea.style.opacity = 1;
 }
 
 function getRandomIndex(array) {
