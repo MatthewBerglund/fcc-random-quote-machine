@@ -43,8 +43,14 @@ footer {
   font-family: "Special Elite", cursive;
   justify-self: center;
   line-height: 1.5;
+  opacity: 0;
   padding: 0 15px;
   text-align: center;
+  transition: all .3s ease-out;
+}
+
+#display-area.show {
+  opacity: 1;
 }
 
 #quote {
@@ -90,6 +96,8 @@ footer {
 #tweet-quote-link img {
   width: 100%;
 }
+
+
 
 /* --- Flaticon attribution --- */
 .attribution {

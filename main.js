@@ -19,20 +19,27 @@ const quotes = [
   {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
 
+const displayArea = document.getElementById('display-area');
 const newQuoteButton = document.getElementById('new-quote-button');
-newQuoteButton.addEventListener('click', displayNewQuote);
+newQuoteButton.addEventListener('click', handleNewQuoteClick);
 
 displayNewQuote();
+
+function handleNewQuoteClick() {
+  displayArea.classList.toggle('show');
+  setTimeout(displayNewQuote, 350);
+}
 
 function displayNewQuote() {
   const quotePara = document.getElementById('quote');
   const refCite = document.getElementById('ref');
   const quote = getRandomQuote(quotes);
-  
+
   quotePara.innerText = '\“' + quote['text'] + '\”';
   refCite.innerText = quote['movie'];
+  displayArea.classList.toggle('show');
   updateTwitterIntent(quote);
-}
+};
 
 function getRandomIndex(array) {
   const min = Math.ceil(0);
