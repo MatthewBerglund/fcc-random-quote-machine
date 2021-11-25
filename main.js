@@ -18,34 +18,20 @@ const quotes = [
   {text: 'As far back as I can remember, I always wanted to be a gangster.', movie: 'Goodfellas'},
   {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
-const displayArea = document.getElementById('display-area');
-const quotePara = document.getElementById('quote');
-const newQuoteButton = document.getElementById('new-quote-button');
 
+const newQuoteButton = document.getElementById('new-quote-button');
 newQuoteButton.addEventListener('click', displayNewQuote);
+
 displayNewQuote();
 
 function displayNewQuote() {
-  const quote = getRandomQuote(quotes);
-
-  if (!quotePara.innerText) {
-    fadeInNewQuote(quote);
-  } else {
-    const fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
-    fadeOut.onfinish = fadeInNewQuote(quote);
-  }
-
-  updateTwitterIntent(quote);
-}
-
-function fadeInNewQuote(quote) {
+  const quotePara = document.getElementById('quote');
   const refCite = document.getElementById('ref');
+  const quote = getRandomQuote(quotes);
   
   quotePara.innerText = '\“' + quote['text'] + '\”';
   refCite.innerText = quote['movie'];
-  
-  displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750);
-  displayArea.style.opacity = 1;
+  updateTwitterIntent(quote);
 }
 
 function getRandomIndex(array) {
