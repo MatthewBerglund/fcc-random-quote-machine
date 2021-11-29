@@ -45,12 +45,6 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-// function getRandomIndex(array) {
-//   const min = Math.ceil(0);
-//   const max = Math.floor(array.length);
-//   return Math.floor(Math.random() * (max - min) + min);
-// }
-
 function getRandomQuote(quotes) {
   const index = getRandomIndex(quotes);
   return quotes[index];
