@@ -55,7 +55,6 @@ function getRandomQuote(quotes) {
 
 function updateTwitterIntent(quote) {
   const twitterLink = document.getElementById('tweet-quote-link');
-  let intentAddress = 'https://twitter.com/intent/tweet?text=';
-  intentAddress += '\"' + quote['text'] + '\"' + '  — ' + quote['movie'];
+  const intentAddress = `https://twitter.com/intent/tweet?text=“${quote['text']}”  — ${quote['movie']}`;
   twitterLink.setAttribute('href', intentAddress);
 }
