@@ -27,7 +27,7 @@ displayNewQuote();
 
 function handleNewQuoteClick() {
   displayArea.classList.toggle('show');
-  setTimeout(displayNewQuote, 350);
+  setTimeout(displayNewQuote, 500);
 }
 
 function displayNewQuote() {
