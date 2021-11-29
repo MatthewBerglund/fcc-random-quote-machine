@@ -28,11 +28,6 @@ function bindEvents() {
   newQuoteButton.addEventListener('click', handleNewQuoteClick);
 }
 
-function handleNewQuoteClick() {
-  displayArea.classList.toggle('show');
-  setTimeout(displayNewQuote, 350);
-}
-
 function displayNewQuote() {
   const quotePara = document.getElementById('quote');
   const refCite = document.getElementById('ref');
@@ -53,8 +48,13 @@ function getRandomQuote(quotes) {
   return quotes[index];
 }
 
+function handleNewQuoteClick() {
+  displayArea.classList.toggle('show');
+  setTimeout(displayNewQuote, 350);
+}
+
 function updateTwitterIntent(quote) {
   const twitterLink = document.getElementById('tweet-quote-link');
-  const intentAddress = `https://twitter.com/intent/tweet?text=“${quote['text']}”  — ${quote['movie']}`;
+  const intentAddress = `https://twitter.com/intent/tweet?text=“${quote.text}”  — ${quote.movie}`;
   twitterLink.setAttribute('href', intentAddress);
 }
