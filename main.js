@@ -1,4 +1,4 @@
-var quotes = [
+const quotes = [
   {text: 'Leave the gun. Take the cannoli.', movie: 'The Godfather'},
   {text: 'I\’m gonna make him an offer he can\’t refuse.', movie: 'The Godfather'},
   {text: 'I want all of you to enjoy your cake, so...enjoy.', movie: 'The Godfather'},
@@ -18,41 +18,43 @@ var quotes = [
   {text: 'As far back as I can remember, I always wanted to be a gangster.', movie: 'Goodfellas'},
   {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
+const displayArea = document.getElementById('display-area');
 
-var newQuoteButton = document.getElementById('new-quote-button');
-newQuoteButton.addEventListener('click', displayNewQuote);
-
+bindEvents();
 displayNewQuote();
 
-function displayNewQuote() {
-  var displayArea = document.getElementById('display-area');
-  var quotePara = document.getElementById('quote');
-  var refPara = document.getElementById('ref');
-  var quote = getRandomQuote(quotes);
-
-  var fadeOut = displayArea.animate([{ opacity: 1 },{ opacity: 0 }], 250);
-  fadeOut.onfinish = function() {
-    quotePara.innerText = '\“' + quote['text'] + '\”';
-    refPara.innerText = '— ' + quote['movie'];
-    displayArea.animate([{ opacity: 0 },{ opacity: 1 }], 750)
-  }
-
-  updateTwitterIntent(quote);
+function bindEvents() {
+  const newQuoteButton = document.getElementById('new-quote-button');
+  newQuoteButton.addEventListener('click', handleNewQuoteClick);
 }
 
+function displayNewQuote() {
+  const quotePara = document.getElementById('quote');
+  const refCite = document.getElementById('ref');
+  const quote = getRandomQuote(quotes);
+
+  quotePara.innerText = '\“' + quote['text'] + '\”';
+  refCite.innerText = quote['movie'];
+  displayArea.classList.toggle('show');
+  updateTwitterIntent(quote);
+};
+
 function getRandomIndex(array) {
-  var min = Math.ceil(0);
-  var max = Math.floor(array.length);
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * array.length);
 }
 
 function getRandomQuote(quotes) {
-  var index = getRandomIndex(quotes);
+  const index = getRandomIndex(quotes);
   return quotes[index];
 }
 
+function handleNewQuoteClick() {
+  displayArea.classList.toggle('show');
+  setTimeout(displayNewQuote, 350);
+}
+
 function updateTwitterIntent(quote) {
-  var intentAddress = 'https://twitter.com/intent/tweet?text=';
-  intentAddress += '\"' + quote['text'] + '\"' + '  — ' + quote['movie'];
-  document.getElementById('tweet-quote-link').setAttribute('href', intentAddress);
+  const twitterLink = document.getElementById('tweet-quote-link');
+  const intentAddress = `https://twitter.com/intent/tweet?text=“${quote.text}”  — ${quote.movie}`;
+  twitterLink.setAttribute('href', intentAddress);
 }
