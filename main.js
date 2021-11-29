@@ -27,7 +27,7 @@ displayNewQuote();
 
 function handleNewQuoteClick() {
   displayArea.classList.toggle('show');
-  setTimeout(displayNewQuote, 500);
+  setTimeout(displayNewQuote, 350);
 }
 
 function displayNewQuote() {
@@ -42,10 +42,14 @@ function displayNewQuote() {
 };
 
 function getRandomIndex(array) {
-  const min = Math.ceil(0);
-  const max = Math.floor(array.length);
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * array.length);
 }
+
+// function getRandomIndex(array) {
+//   const min = Math.ceil(0);
+//   const max = Math.floor(array.length);
+//   return Math.floor(Math.random() * (max - min) + min);
+// }
 
 function getRandomQuote(quotes) {
   const index = getRandomIndex(quotes);
