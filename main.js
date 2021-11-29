@@ -18,12 +18,15 @@ const quotes = [
   {text: 'As far back as I can remember, I always wanted to be a gangster.', movie: 'Goodfellas'},
   {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
 ];
-
 const displayArea = document.getElementById('display-area');
-const newQuoteButton = document.getElementById('new-quote-button');
-newQuoteButton.addEventListener('click', handleNewQuoteClick);
 
+bindEvents();
 displayNewQuote();
+
+function bindEvents() {
+  const newQuoteButton = document.getElementById('new-quote-button');
+  newQuoteButton.addEventListener('click', handleNewQuoteClick);
+}
 
 function handleNewQuoteClick() {
   displayArea.classList.toggle('show');
