@@ -8,6 +8,7 @@ request.onload = function() {
     init(quotes);
   } else {
     console.log(`Network request for quotes.json failed with response ${request.status}: ${request.statusText}.`);
+    document.getElementById('quote-box').innerHTML = 'Error: Quotes not found. Refresh to try again.';
   }
 };
 
