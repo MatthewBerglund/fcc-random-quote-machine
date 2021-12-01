@@ -1,5 +1,5 @@
 const request = new XMLHttpRequest();
-request.open('GET', 'quotes.json');
+request.open('GET', 'quote.json');
 request.responseType = 'json';
 
 request.onload = function() {
@@ -7,7 +7,7 @@ request.onload = function() {
     const quotes = request.response;
     init(quotes);
   } else {
-    console.log(`Network request for quotes.json failed.`);
+    console.log(`Network request for quotes.json failed with response ${request.status}: ${request.statusText}.`);
   }
 };
 
