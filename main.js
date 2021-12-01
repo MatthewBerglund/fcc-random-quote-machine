@@ -1,5 +1,5 @@
 const request = new XMLHttpRequest();
-request.open('GET', 'quote.json');
+request.open('GET', 'quotes.json');
 request.responseType = 'json';
 
 request.onload = function() {
@@ -26,10 +26,12 @@ function init(quotes) {
   function displayNewQuote() {
     const quotePara = document.getElementById('quote');
     const refCite = document.getElementById('ref');
+    const refYear = document.getElementById('ref-year');
     const quote = getRandomQuote(quotes);
 
     quotePara.innerText = `“${quote.text}”`;
     refCite.innerText = quote.movie;
+    refYear.innerText = ` (${quote.year})`;
     displayArea.classList.toggle('show');
     updateTwitterIntent(quote);
   };
