@@ -33,8 +33,8 @@ function displayNewQuote() {
   const refCite = document.getElementById('ref');
   const quote = getRandomQuote(quotes);
 
-  quotePara.innerText = '\“' + quote['text'] + '\”';
-  refCite.innerText = quote['movie'];
+  quotePara.innerText = `“${quote.text}”`;
+  refCite.innerText = quote.movie;
   displayArea.classList.toggle('show');
   updateTwitterIntent(quote);
 };

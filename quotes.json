@@ -1,0 +1,93 @@
+[
+  {
+    "text" : "Leave the gun. Take the cannoli.",
+    "movie" : "The Godfather",
+    "year" : "1972"
+  },
+  {
+    "text" : "I’m gonna make him an offer he can’t refuse.",
+    "movie" : "The Godfather",
+    "year" : "1972"
+  },
+  {
+    "text" : "I want all of you to enjoy your cake, so...enjoy.",
+    "movie" : "The Godfather",
+    "year" : "1972"
+  },
+  {
+    "text" : "Frankly my dear, I don’t give a damn.",
+    "movie" : "Gone with the Wind",
+    "year" : "1939"
+  },
+  {
+    "text" : "As God is my witness, I’ll never be hungry again.",
+    "movie" : "Gone with the Wind",
+    "year" : "1939"
+  },
+  {
+    "text" : "You don’t understand! I coulda had class. I coulda been a contender. I could’ve been somebody, instead of a bum, which is what I am.",
+    "movie" : "On the Waterfront",
+    "year" : "1954"
+  },
+  {
+    "text" : "Toto, I’ve got a feeling we’re not in Kansas anymore.",
+    "movie" : "The Wizard of Oz",
+    "year" : "1939"
+  },
+  {
+    "text" : "I’ll get you, my pretty, and your little dog, too!",
+    "movie" : "The Wizard of Oz",
+    "year": "1939"
+  },
+  {
+    "text" : "Here’s looking at you, kid.", 
+    "movie" : "Casablanca",
+    "year" : "1942"
+  },
+ 
+  {
+    "text" : "Say ‘hello’ to my little friend!",
+    "movie" : "Scarface",
+    "year" : "1983"
+  },
+  {
+    "text" : "I feel the need — the need for speed!",
+    "movie" : "Top Gun",
+    "year" : "1986"
+  },
+  {
+    "text" : "Houston, we have a problem.",
+    "movie" : "Apollo 13",
+    "year" : "1995"
+  },
+  {
+    "text" : "Nobody puts Baby in a corner.",
+    "movie" : "Dirty Dancing",
+    "year" : "1987"
+  },
+  {
+    "text" : "One morning I shot an elephant in my pajamas. How he got in my pajamas, I don’t know.",
+    "movie" : "Animal Crackers",
+    "year" : "1930"
+  },
+  {
+    "text" : "You’ve got to ask yourself one question: ‘Do I feel lucky?’ Well, do ya, punk?",
+    "movie" : "Dirty Harry",
+    "year" : "1971"
+  },
+  {
+    "text" : "Hold on to your butts.",
+    "movie" : "Jurassic Park",
+    "year" : "1993"
+  },
+  {
+    "text" : "As far back as I can remember, I always wanted to be a gangster.",
+    "movie" : "Goodfellas",
+    "year" : "1990"
+  },
+  {
+    "text" : "Human sacrifice! Dogs and cats living together. Mass hysteria!", 
+    "movie" : "Ghostbusters",
+    "year" : "1984"
+  }
+]
