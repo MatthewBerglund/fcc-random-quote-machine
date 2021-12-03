@@ -1,18 +1,11 @@
-const request = new XMLHttpRequest();
-request.open('GET', 'quotes.json');
-request.responseType = 'json';
-
-request.onload = function() {
-  if (request.status === 200) {
-    const quotes = request.response;
-    init(quotes);
-  } else {
-    console.log(`Network request for quotes.json failed with response ${request.status}: ${request.statusText}.`);
-    document.getElementById('quote-box').innerHTML = 'Error: Quotes not found. Refresh to try again.';
-  }
-};
-
-request.send();
+fetch('quotes.json').then(function(response) {
+  return response.json();
+}).then(function(json) {
+  const quotes = json;
+  init(quotes);
+}).catch(function(error) {
+  document.getElementById('quote-box').innerHTML = `Network request failed with message: ${error.message}. Please refresh to try again.`;
+});
 
 function init(quotes) {
   const displayArea = document.getElementById('display-area');
