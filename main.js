@@ -1,11 +1,18 @@
-fetch('quotes.json').then(function(response) {
-  return response.json();
-}).then(function(json) {
-  const quotes = json;
-  init(quotes);
-}).catch(function(error) {
-  document.getElementById('quote-box').innerHTML = `Network request failed with message: ${error.message}. Please refresh to try again.`;
-});
+fetch('quote.json')
+  .then(response => {
+    if (!response.ok) {
+      document.getElementById('quote-box').textContent = `
+        Network request failed with status 
+        ${response.status}: ${response.statusText}. 
+        Please refresh to try again.
+      `;
+    }
+    return response.json();
+  })
+  .then(json => {
+    const quotes = json;
+    init(quotes);
+  });
 
 function init(quotes) {
   const displayArea = document.getElementById('display-area');
