@@ -1,4 +1,4 @@
-fetch('quote.json')
+fetch('quotes.json')
   .then(response => {
     if (!response.ok) {
       document.getElementById('quote-box').textContent = `
