@@ -25,14 +25,17 @@ function init(quotes) {
   }
 
   function displayNewQuote() {
-    const quotePara = document.getElementById('quote');
-    const refCite = document.getElementById('ref');
-    const refYear = document.getElementById('ref-year');
     const quote = getRandomQuote(quotes);
-
+    
+    const quotePara = document.getElementById('quote');
     quotePara.innerText = `“${quote.text}”`;
+    
+    const refCite = document.getElementById('ref');
     refCite.innerText = quote.movie;
+    
+    const refYear = document.getElementById('ref-year');
     refYear.innerText = ` (${quote.year})`;
+    
     displayArea.classList.toggle('show');
     updateTwitterIntent(quote);
   }
