@@ -49,13 +49,9 @@ function init(quotes) {
     return encodedTweet;
   }
 
-  function getRandomIndex(array) {
-    return Math.floor(Math.random() * array.length);
-  }
-
   function getRandomQuote(quotes) {
-    const index = getRandomIndex(quotes);
-    return quotes[index];
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
   }
 
   function handleNewQuoteClick() {
