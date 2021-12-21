@@ -1,19 +1,4 @@
-let quotes;
 const displayArea = document.getElementById('display-area');
-
-fetch('quotes.json')
-  .then(response => {
-    if (!response.ok) {
-      const quoteBox = document.getElementById('quote-box');
-      quoteBox.textContent = 
-          `Network request failed with status ${response.status}:
-          ${response.statusText}. Please refresh to try again.`;
-    }
-    return response.json();
-  })
-  .then(json => {
-    quotes = json;
-  });
 
 bindEvents();
 displayNewQuote();
@@ -24,19 +9,24 @@ function bindEvents() {
 }
 
 function displayNewQuote() {
-  const quote = getRandomQuote(quotes);
+  fetch('https://movie-quote-api.herokuapp.com/v1/quote?censored')
+    .then(response => {
+      if (!response.ok) {
+        const quoteBox = document.getElementById('quote-box');
+        quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
+      }
+      return response.json();
+    })
+    .then(quoteJson => {
+      const quotePara = document.getElementById('quote');
+      quotePara.innerText = `“${quoteJson.quote}”`;
 
-  const quotePara = document.getElementById('quote');
-  quotePara.innerText = `“${quote.text}”`;
+      const refCite = document.getElementById('ref');
+      refCite.innerText = quoteJson.show;
 
-  const refCite = document.getElementById('ref');
-  refCite.innerText = quote.movie;
-
-  const refYear = document.getElementById('ref-year');
-  refYear.innerText = ` (${quote.year})`;
-
-  displayArea.classList.toggle('show');
-  updateTwitterIntent(quote);
+      displayArea.classList.toggle('show');
+      updateTwitterIntent(quoteJson);
+    });
 }
 
 function encodeTweetForURI(tweetText) {
@@ -51,18 +41,13 @@ function encodeTweetForURI(tweetText) {
   return encodedTweet;
 }
 
-function getRandomQuote(quotes) {
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  return quotes[randomIndex];
-}
-
 function handleNewQuoteClick() {
   displayArea.classList.toggle('show');
   setTimeout(displayNewQuote, 350);
 }
 
-function updateTwitterIntent(quote) {
-  const tweetText = encodeTweetForURI(`“${quote.text}”  — ${quote.movie} (${quote.year})`);
+function updateTwitterIntent(quoteJson) {
+  const tweetText = encodeTweetForURI(`“${quoteJson.quote}”  — ${quoteJson.show}`);
   const intentURL = `https://twitter.com/intent/tweet?text=${tweetText}`;
   const twitterLink = document.getElementById('tweet-quote-link');
   twitterLink.setAttribute('href', intentURL);

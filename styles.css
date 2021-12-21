@@ -32,8 +32,8 @@ footer {
   grid-row-end: 3;
   grid-row-start: 2;
   grid-template-rows: 2fr 1fr;
-  height: 360px;
   justify-self: center;
+  min-height: 360px;
   padding: 20px;
   width: 535px;
 }
