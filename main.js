@@ -1,12 +1,9 @@
 const displayArea = document.getElementById('display-area');
 
-bindEvents();
-displayNewQuote();
+const newQuoteButton = document.getElementById('new-quote-button');
+newQuoteButton.addEventListener('click', handleNewQuoteClick);
 
-function bindEvents() {
-  const newQuoteButton = document.getElementById('new-quote-button');
-  newQuoteButton.addEventListener('click', handleNewQuoteClick);
-}
+displayNewQuote();
 
 function displayNewQuote() {
   fetch('https://movie-quote-api.herokuapp.com/v1/quote?censored')
@@ -25,6 +22,11 @@ function displayNewQuote() {
       refCite.innerText = quoteJson.show;
 
       displayArea.classList.toggle('show');
+      
+      setTimeout(() => {
+        newQuoteButton.disabled = false;
+      }, 150);
+
       updateTwitterIntent(quoteJson);
     });
 }
@@ -42,6 +44,7 @@ function encodeTweetForURI(tweetText) {
 }
 
 function handleNewQuoteClick() {
+  newQuoteButton.disabled = true;
   displayArea.classList.toggle('show');
   setTimeout(displayNewQuote, 350);
 }
