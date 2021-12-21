@@ -1,17 +1,15 @@
 fetch('quotes.json')
   .then(response => {
     if (!response.ok) {
-      document.getElementById('quote-box').textContent = `
-        Network request failed with status 
-        ${response.status}: ${response.statusText}. 
-        Please refresh to try again.
-      `;
+      const quoteBox = document.getElementById('quote-box');
+      quoteBox.textContent = 
+          `Network request failed with status ${response.status}: 
+          ${response.statusText}. Please refresh to try again.`;
     }
     return response.json();
   })
-  .then(json => {
-    const quotes = json;
-    init(quotes);
+  .then(quotesJson => {
+    init(quotesJson);
   });
 
 function init(quotes) {
