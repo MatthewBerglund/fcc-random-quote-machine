@@ -1,69 +1,69 @@
+let quotes;
+const displayArea = document.getElementById('display-area');
+
 fetch('quotes.json')
   .then(response => {
     if (!response.ok) {
       const quoteBox = document.getElementById('quote-box');
       quoteBox.textContent = 
-          `Network request failed with status ${response.status}: 
+          `Network request failed with status ${response.status}:
           ${response.statusText}. Please refresh to try again.`;
     }
     return response.json();
   })
-  .then(quotesJson => {
-    init(quotesJson);
+  .then(json => {
+    quotes = json;
   });
 
-function init(quotes) {
-  const displayArea = document.getElementById('display-area');
-  bindEvents();
-  displayNewQuote();
+bindEvents();
+displayNewQuote();
 
-  function bindEvents() {
-    const newQuoteButton = document.getElementById('new-quote-button');
-    newQuoteButton.addEventListener('click', handleNewQuoteClick);
-  }
+function bindEvents() {
+  const newQuoteButton = document.getElementById('new-quote-button');
+  newQuoteButton.addEventListener('click', handleNewQuoteClick);
+}
 
-  function displayNewQuote() {
-    const quote = getRandomQuote(quotes);
-    
-    const quotePara = document.getElementById('quote');
-    quotePara.innerText = `“${quote.text}”`;
-    
-    const refCite = document.getElementById('ref');
-    refCite.innerText = quote.movie;
-    
-    const refYear = document.getElementById('ref-year');
-    refYear.innerText = ` (${quote.year})`;
-    
-    displayArea.classList.toggle('show');
-    updateTwitterIntent(quote);
-  }
+function displayNewQuote() {
+  const quote = getRandomQuote(quotes);
 
-  function encodeTweetForURI(tweetText) {
-    let encodedTweet = encodeURIComponent(tweetText);
-    
-    // Encode reserved chars not encoded by `encodeURIComponent()`
-    encodedTweet = encodedTweet.replace(/[!*)(']/g, char => {
-      const charInHex = char.charCodeAt(0).toString(16);
-      return '%' + charInHex;
-    });
+  const quotePara = document.getElementById('quote');
+  quotePara.innerText = `“${quote.text}”`;
 
-    return encodedTweet;
-  }
+  const refCite = document.getElementById('ref');
+  refCite.innerText = quote.movie;
 
-  function getRandomQuote(quotes) {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
-  }
+  const refYear = document.getElementById('ref-year');
+  refYear.innerText = ` (${quote.year})`;
 
-  function handleNewQuoteClick() {
-    displayArea.classList.toggle('show');
-    setTimeout(displayNewQuote, 350);
-  }
+  displayArea.classList.toggle('show');
+  updateTwitterIntent(quote);
+}
 
-  function updateTwitterIntent(quote) {
-    const tweetText = encodeTweetForURI(`“${quote.text}”  — ${quote.movie} (${quote.year})`);
-    const intentURL = `https://twitter.com/intent/tweet?text=${tweetText}`;
-    const twitterLink = document.getElementById('tweet-quote-link');
-    twitterLink.setAttribute('href', intentURL);
-  }
+function encodeTweetForURI(tweetText) {
+  let encodedTweet = encodeURIComponent(tweetText);
+
+  // Encode reserved chars not encoded by `encodeURIComponent()`
+  encodedTweet = encodedTweet.replace(/[!*)(']/g, char => {
+    const charInHex = char.charCodeAt(0).toString(16);
+    return '%' + charInHex;
+  });
+
+  return encodedTweet;
+}
+
+function getRandomQuote(quotes) {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  return quotes[randomIndex];
+}
+
+function handleNewQuoteClick() {
+  displayArea.classList.toggle('show');
+  setTimeout(displayNewQuote, 350);
+}
+
+function updateTwitterIntent(quote) {
+  const tweetText = encodeTweetForURI(`“${quote.text}”  — ${quote.movie} (${quote.year})`);
+  const intentURL = `https://twitter.com/intent/tweet?text=${tweetText}`;
+  const twitterLink = document.getElementById('tweet-quote-link');
+  twitterLink.setAttribute('href', intentURL);
 }
