@@ -23,6 +23,7 @@ function displayNewQuote() {
 
       displayArea.classList.toggle('show');
       
+      // Allow quote text to fade in before enabling button
       setTimeout(() => {
         newQuoteButton.disabled = false;
       }, 150);
