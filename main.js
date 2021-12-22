@@ -16,8 +16,8 @@ function displayNewQuote() {
   const quotePara = document.getElementById('quote');
   quotePara.innerText = `“${quote.text}”`;
 
-  const refCite = document.getElementById('ref');
-  refCite.innerText = quote.movie;
+  const movieCite = document.getElementById('movie');
+  movieCite.innerText = quote.movie;
 
   const refYear = document.getElementById('ref-year');
   refYear.innerText = ` (${quote.year})`;
