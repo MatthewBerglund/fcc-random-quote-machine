@@ -1,21 +1,14 @@
+const displayArea = document.getElementById('display-area');
+
 const newQuoteButton = document.getElementById('new-quote-button');
 newQuoteButton.addEventListener('click', handleNewQuoteClick);
 
-const displayArea = document.getElementById('display-area');
 let quotes;
 
-fetch('quotes.json')
-  .then(response => {
-    if (!response.ok) {
-      const quoteBox = document.getElementById('quote-box');
-      quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
-    }
-    return response.json();
-  })
-  .then(json => {
-    quotes = json;
-    displayNewQuote();
-  });
+fetchQuotes().then(fetchedQuotes => {
+  quotes = fetchedQuotes;
+  displayNewQuote();
+});
 
 function displayNewQuote() {
   const quote = getRandomQuote(quotes);
@@ -49,6 +42,18 @@ function encodeTweetForURI(tweetText) {
   });
 
   return encodedTweet;
+}
+
+async function fetchQuotes() {
+  const response = await fetch('quotes.json');
+
+  if (!response.ok) {
+    const quoteBox = document.getElementById('quote-box');
+    quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
+  } else {
+    const fetchedQuotes = await response.json();
+    return fetchedQuotes;
+  }
 }
 
 function getRandomQuote(quotes) {
