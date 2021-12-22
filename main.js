@@ -19,8 +19,8 @@ function displayNewQuote() {
   const movieCite = document.getElementById('movie');
   movieCite.innerText = quote.movie;
 
-  const refYear = document.getElementById('ref-year');
-  refYear.innerText = ` (${quote.year})`;
+  const yearSpan = document.getElementById('year');
+  yearSpan.innerText = ` (${quote.year})`;
 
   displayArea.classList.toggle('show');
 
