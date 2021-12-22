@@ -1,60 +1,58 @@
-const quotes = [
-  {text: 'Leave the gun. Take the cannoli.', movie: 'The Godfather'},
-  {text: 'I\’m gonna make him an offer he can\’t refuse.', movie: 'The Godfather'},
-  {text: 'I want all of you to enjoy your cake, so...enjoy.', movie: 'The Godfather'},
-  {text: 'Frankly my dear, I don\’t give a damn.', movie: 'Gone with the Wind'},
-  {text: 'You don\’t understand! I coulda had class. I coulda been a contender. I could\’ve been somebody, instead of a bum, which is what I am.', movie: 'On the Waterfront'},
-  {text: 'Toto, I\’ve got a feeling we\’re not in Kansas anymore.', movie: 'The Wizard of Oz'},
-  {text: 'Here\’s looking at you, kid.', movie: 'Casablanca'},
-  {text: 'As God is my witness, I\’ll never be hungry again.', movie: 'Gone with the Wind'},
-  {text: 'Say \‘hello\’ to my little friend!', movie: 'Scarface'},
-  {text: 'I feel the need — the need for speed!', movie: 'Top Gun'},
-  {text: 'Houston, we have a problem.', movie: 'Apollo 13'},
-  {text: 'Nobody puts Baby in a corner.', movie: 'Dirty Dancing'},
-  {text: 'I\’ll get you, my pretty, and your little dog, too!', movie: 'The Wizard of Oz'},
-  {text: 'One morning I shot an elephant in my pajamas. How he got in my pajamas, I don\’t know.', movie: 'Animal Crackers'},
-  {text: 'You\’ve got to ask yourself one question: \‘Do I feel lucky?\’ Well, do ya, punk?', movie: 'Dirty Harry'},
-  {text: 'Hold on to your butts.', movie: 'Jurassic Park'},
-  {text: 'As far back as I can remember, I always wanted to be a gangster.', movie: 'Goodfellas'},
-  {text: 'Human sacrifice! Dogs and cats living together. Mass hysteria!', movie: 'Ghostbusters'}
-];
 const displayArea = document.getElementById('display-area');
 
-bindEvents();
+const newQuoteButton = document.getElementById('new-quote-button');
+newQuoteButton.addEventListener('click', handleNewQuoteClick);
+
 displayNewQuote();
 
-function bindEvents() {
-  const newQuoteButton = document.getElementById('new-quote-button');
-  newQuoteButton.addEventListener('click', handleNewQuoteClick);
-}
-
 function displayNewQuote() {
-  const quotePara = document.getElementById('quote');
-  const refCite = document.getElementById('ref');
-  const quote = getRandomQuote(quotes);
+  fetch('https://movie-quote-api.herokuapp.com/v1/quote?censored')
+    .then(response => {
+      if (!response.ok) {
+        const quoteBox = document.getElementById('quote-box');
+        quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
+      }
+      return response.json();
+    })
+    .then(quoteJson => {
+      const quotePara = document.getElementById('quote');
+      quotePara.innerText = `“${quoteJson.quote}”`;
 
-  quotePara.innerText = '\“' + quote['text'] + '\”';
-  refCite.innerText = quote['movie'];
-  displayArea.classList.toggle('show');
-  updateTwitterIntent(quote);
-};
+      const refCite = document.getElementById('ref');
+      refCite.innerText = quoteJson.show;
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+      displayArea.classList.toggle('show');
+      
+      // Allow quote text to fade in before enabling button
+      setTimeout(() => {
+        newQuoteButton.disabled = false;
+      }, 150);
+
+      updateTwitterIntent(quoteJson);
+    });
 }
 
-function getRandomQuote(quotes) {
-  const index = getRandomIndex(quotes);
-  return quotes[index];
+function encodeTweetForURI(tweetText) {
+  let encodedTweet = encodeURIComponent(tweetText);
+
+  // Encode reserved chars not encoded by `encodeURIComponent()`
+  encodedTweet = encodedTweet.replace(/[!*)(']/g, char => {
+    const charInHex = char.charCodeAt(0).toString(16);
+    return '%' + charInHex;
+  });
+
+  return encodedTweet;
 }
 
 function handleNewQuoteClick() {
+  newQuoteButton.disabled = true;
   displayArea.classList.toggle('show');
   setTimeout(displayNewQuote, 350);
 }
 
-function updateTwitterIntent(quote) {
+function updateTwitterIntent(quoteJson) {
+  const tweetText = encodeTweetForURI(`“${quoteJson.quote}”  — ${quoteJson.show}`);
+  const intentURL = `https://twitter.com/intent/tweet?text=${tweetText}`;
   const twitterLink = document.getElementById('tweet-quote-link');
-  const intentAddress = `https://twitter.com/intent/tweet?text=“${quote.text}”  — ${quote.movie}`;
-  twitterLink.setAttribute('href', intentAddress);
+  twitterLink.setAttribute('href', intentURL);
 }
