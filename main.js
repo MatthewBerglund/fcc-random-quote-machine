@@ -1,21 +1,14 @@
+const displayArea = document.getElementById('display-area');
+
 const newQuoteButton = document.getElementById('new-quote-button');
 newQuoteButton.addEventListener('click', handleNewQuoteClick);
 
-const displayArea = document.getElementById('display-area');
 let quotes;
 
-fetch('quotes.json')
-  .then(response => {
-    if (!response.ok) {
-      const quoteBox = document.getElementById('quote-box');
-      quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
-    }
-    return response.json();
-  })
-  .then(json => {
-    quotes = json;
-    displayNewQuote();
-  });
+fetchQuotes().then(fetchedQuotes => {
+  quotes = fetchedQuotes;
+  displayNewQuote();
+});
 
 function displayNewQuote() {
   const quote = getRandomQuote(quotes);
@@ -23,11 +16,11 @@ function displayNewQuote() {
   const quotePara = document.getElementById('quote');
   quotePara.innerText = `“${quote.text}”`;
 
-  const refCite = document.getElementById('ref');
-  refCite.innerText = quote.movie;
+  const movieCite = document.getElementById('movie');
+  movieCite.innerText = quote.movie;
 
-  const refYear = document.getElementById('ref-year');
-  refYear.innerText = ` (${quote.year})`;
+  const yearSpan = document.getElementById('year');
+  yearSpan.innerText = ` (${quote.year})`;
 
   displayArea.classList.toggle('show');
 
@@ -49,6 +42,18 @@ function encodeTweetForURI(tweetText) {
   });
 
   return encodedTweet;
+}
+
+async function fetchQuotes() {
+  const response = await fetch('quotes.json');
+
+  if (!response.ok) {
+    const quoteBox = document.getElementById('quote-box');
+    quoteBox.textContent = `Network request failed with status ${response.status}: ${response.statusText}. Please try again.`;
+  } else {
+    const fetchedQuotes = await response.json();
+    return fetchedQuotes;
+  }
 }
 
 function getRandomQuote(quotes) {
