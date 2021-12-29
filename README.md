@@ -3,7 +3,7 @@ A web application that randomly selects and displays a quote from a famous movie
 
 ![A screenshot of the app](/assets/images/app_screenshot.png)
 
-Inspired by freeCodeCamp's [Build a Random Quote Machine](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine) project. This version of the project uses pure HTML, CSS and JS — no frameworks, no libraries, no SASS. All quotes are hard-coded in main.js.
+Inspired by freeCodeCamp's [Build a Random Quote Machine](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine) project. This version of the project uses pure HTML, CSS and JS — no frameworks, no libraries, no SASS. All quotes are hard-coded in quotes.json.
 
 
 ## Requirements
